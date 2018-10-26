@@ -1,0 +1,68 @@
+OSI Layer 4
+
+Objectives
+
+    Identify Network Devices at each layer of the OSI model (Layer 1-4)
+
+    Send and receive Unicast/Broadcast/Multicast/Anycast traffic
+
+    Use struct to unpack dynamically sized input (ie use a sequence of unpacks with values depending on previous unpacks)
+	
+TCP
+
+TCP is connection-oriented, provides error checking and reliability of communication
+
+TCP includes HTTP, SMTP, SSH
+
+connections begin with a handshake, then data is transmitted, then connection is closed followed by teardown
+
+TCP provides reliable transfer via:
+
+    Correctly ordering packets received in arbitrary order.
+
+    Validating received packets were not corrupt.
+
+    Re-requesting packets that were corrupt or not received at all.
+
+    Flow and congestion control.
+
+    Requires positive acknowledgement before next data transmission.
+	
+Layer 4 Devices
+
+switches
+application (web) accelerators
+WAN accelerators
+load balancers
+
+TCP Headers and Flags
+
+Headers:
+Source Port – sending port
+Destination Port – Receiving port
+Sequence Number – Initially random. Each new transmission adds the size of the data
+Acknowledgment Number – The next byte expected to be received.
+Data offset - Size of TCP header in 32bit words
+Reserved – 0's
+Flags – Bit mask of all TCP flags
+Window size – Max number of bytes receiver can handle
+Checksum – Checksum of header and data
+Urgent Pointer – Only valid if URG flag set
+Options – Allows for expanded uses
+Flags:
+NS - Nonce Sum, used to counter an old method for an attacker attempting to "hide" traffic.
+CWR - Congestion Window Reduced, an acknowledgement of congestion notification (ECE).
+ECE - Explicit Congestion Notification, notifies sender of network congestion, or that the remote side is ENC capable (if sent along with SYN).
+URG - Urgent field, is valid in this transmission.
+ACK - Acknowledgement field, is on almost all transmissions except for initial SYN.
+PSH - Requests data be pushed to application.
+RST - Resets the connection.
+SYN - Requests a Seq No sync.
+FIN - No more data to send.
+
+three-way handshake: cxn initiated via SYN packet, server replies with SYN and ACK, client responds with ACK
+
+window scaling is max data to be received before being ACKed
+flow control is receiver saying how much they are willing to receive before ACK
+
+UDP (DNS, DHCP, SNMP, RIP, etc.)

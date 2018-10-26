@@ -1,0 +1,61 @@
+Author: Yost
+
+**server
+
+from socket import *
+import select
+import sys
+from thread import *
+import struct
+
+
+numPlayers= input()
+
+#UDP connection to see if players are out there
+s0=socket(AF_INET,SOCK_DGRAM)
+s0.bind(('',5000))
+
+#setup lists for sockets and clients
+sockets=[]
+clients=[]
+
+#for each player setup, assign a port to use, and setup a connection
+#add client sockets to sockets[] and add client connections to clients[]
+for x in range(1,numPlayers+1):
+    ts = socket()
+    sockets.append(ts)  #add to sockets[]
+    print ts
+    print sockets[x-1]
+    print x
+    tc ,ta = s0.recvfrom(1024)
+    while tc != "hello server":  #password for clients
+        tc ,ta = s0.recvfrom(1024) 
+    s0.sendto('{}'.format((5000+x)),ta)  #tells client which port they can use
+    sockets[x-1].bind(('',5000+x))
+    sockets[x-1].listen(1)  #looks for client on established port
+    print 'started listening'
+    c,a = sockets[x-1].accept()
+    clients.append(c)  #add to clients[]
+	
+	
+#for each player setup, shoot data to each of them
+def sendAll(data):
+    for x in range(1,numPlayers+1):
+        clients[x-1].send(data)
+		
+
+	
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**client
+
+from socket import *
+s=socket(AF_INET,SOCK_DGRAM)
+s.sendto("hello server",('localhost',5000))
+
+
+portinfo=s.recvfrom(1024)
+port = int(getport[0])
+s=socket()
+s.connect(('localhost',port))

@@ -1,0 +1,86 @@
+Objectives
+
+    Understand Unicast/Multicast/Broadcast/Anycast and explain their differences
+
+    Relate Switching/Routing concepts
+
+    Apply their fundamental understanding of IPv4 Addressing
+
+    Have a fundamental understanding of CIDR Notation
+
+    Apply their understanding of IPv6 Addressing
+
+    Implement data interchange formats such as JSON, Struct libraries (Python)
+
+    Manipulate multiple sockets in a single client or server
+	
+	
+	
+Internet Protocol - IP
+two main type: IPv4(32 bit (4 octets) addresses, displayed as numbers- 255.255.255.255) 
+and IPv6(128 bit (16 octets) addresses, displayed as 8 4-digit hex numbers- ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff)
+ran out of available IPv4 addresses in Sep 2015
+
+Layer 3 devices
+routers-
+bridge-routers (brouters)-
+layer 3 switches-
+
+IPv4 addresses
+expressed in dotted decimal notation (255.255.255.255)
+32 bits in length (4 octets)
+determined by Internet Engineering Task Force (IETF) and Internet Assigned Numbers Authority (IANA)
+
+IPv4 classes
+class A - first bit is 0 (first octet between 0 and 127)
+class B - first two bits are 1 and 0 respectively (first octet between 128 and 191)
+class C - first three bits are 1, 1, and 0 (first octet between 192 and 223)
+class D - first four bits are 1, 1, 1, and 0 (first octet between 224 and 239)
+class E - these two IPs are used for experimentation only (240.0.0.0, and 255.255.255.254)
+
+Subnet mask
+
+CIDR
+
+Routing Protocols
+routers operates on layer 3
+two types of protocols: distance-vector and link-state
+distance-vector based on taking fewest number of hops or devices to get to end
+link-state is concerned with speed
+hybrid styles also exist
+
+Routing
+packets are routed independently even if going to same destination
+when a router receives a packet the destination 
+
+NAT and PAT
+Network Address Translation modifies an address inside your network to a global IP (conserves IPv4 addresses)
+Port Address Translation maps public IP to port number of a device on the network (conserves IPv4 address)
+
+IPv6
+back to single address per host, no longer need address translation
+multicasting is built-in
+needs much more memory space
+can autoconfig on a network
+128 bits (vs 32 for IPv4)
+leading zeros may be omitted (2001:db8:0:0:0:ff00:42:8329 can be written as 2001:db8::ff00:42:8329)
+no broadcast address for IPv6
+scopes: global, site local, link local
+
+Unicast
+
+Multicast
+
+Anycast
+
+IPv6 Header
+
+ICMP
+
+Ping
+
+ICMP Error
+
+ICMP Header
+
+NDP

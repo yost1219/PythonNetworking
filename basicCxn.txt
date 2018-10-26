@@ -1,0 +1,270 @@
+[student@localhost ~]$ ifconfig
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.202.154  netmask 255.255.255.0  broadcast 192.168.202.255
+        inet6 fe80::9f4f:704:e78b:cd5a  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:e0:b0:a0  txqueuelen 1000  (Ethernet)
+        RX packets 308  bytes 46710 (45.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 137  bytes 15450 (15.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:50:2a:59  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[student@localhost ~]$ ^C
+[student@localhost ~]$ ncat -l 1234
+hi
+hi back
+exit
+^C
+[student@localhost ~]$ python2
+Python 2.7.15 (default, May 16 2018, 17:50:09) 
+[GCC 8.1.1 20180502 (Red Hat 8.1.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from socket import *
+>>> s = socket(AF_INET, SOCK_STREAM)
+>>> s.bind((**,15000))
+  File "<stdin>", line 1
+    s.bind((**,15000))
+             ^
+SyntaxError: invalid syntax
+>>> s.bind(("",15000))
+>>> s.listen(5)
+>>> c,a = s.accept()
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+KeyboardInterrupt
+>>> c,a = s.accept()
+c
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+KeyboardInterrupt
+>>> c
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'c' is not defined
+>>> c,a = s.accept()
+>>> c
+<socket._socketobject object at 0x7f3d28365830>
+>>> a
+('192.168.202.155', 15000)
+>>> data = c.recv(1024)
+>>> data
+'Hello World'
+>>> c.send("Hello Yourself")
+14
+>>> c.send("Goodbye")
+7
+>>> c.close()
+>>> c,a = s.accept()
+
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+KeyboardInterrupt
+>>> c,a = s.accept()
+
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+KeyboardInterrupt
+>>> 
+>>> 
+
+
+--------------------------------------------------------------------------------
+
+
+[student@localhost ~]$ ifconfig
+ens33: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.202.155  netmask 255.255.255.0  broadcast 192.168.202.255
+        inet6 fe80::4fa6:2f76:4e04:42fc  prefixlen 64  scopeid 0x20<link>
+        inet6 fe80::9f4f:704:e78b:cd5a  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:65:de:76  txqueuelen 1000  (Ethernet)
+        RX packets 119  bytes 13911 (13.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 157  bytes 22800 (22.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+virbr0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 192.168.122.1  netmask 255.255.255.0  broadcast 192.168.122.255
+        ether 52:54:00:50:2a:59  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[student@localhost ~]$ ncat 192.168.202.154 1234
+hi
+hi back
+exit
+^C
+[student@localhost ~]$ python2
+Python 2.7.15 (default, May 16 2018, 17:50:09) 
+[GCC 8.1.1 20180502 (Red Hat 8.1.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from socket import *
+>>> s = socket((AF_INET, SOCK_STREAM)
+... 
+... )
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 191, in __init__
+    _sock = _realsocket(family, type, proto)
+TypeError: an integer is required
+>>> s=socket(AF_INET, SOCK_STREAM)
+>>> s.bind(("",15000))
+>>> c,a = s.accept
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'instancemethod' object is not iterable
+>>> c
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'c' is not defined
+>>> s.connect(("192.168.202.154",15000))
+>>> s.send("Hello World")
+11
+>>> data = s.recv(1024)
+>>> data
+'Hello Yourself'
+>>> data2 = s.recv(1024)
+>>> data2
+'Goodbye'
+>>> s.close()
+>>> 
+
+
+
+==============================================================================================
+==============================================================================================
+==============================================================================================
+
+[student@localhost ~]$ ncat -l 1234
+hey, buddy
+i'm not your buddy, friend
+i 
+i'm not your friend, pal
+i'm not your pal, guy
+i'm not your guy, buddy
+bye
+^C
+[student@localhost ~]$ python2
+Python 2.7.15 (default, May 16 2018, 17:50:09) 
+[GCC 8.1.1 20180502 (Red Hat 8.1.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from socket import *
+>>> s = socket(AF_INET, SOCK_STREAM)
+>>> s.bind(("",15000))
+>>> s.listen(5)
+>>> c,a = s.accept()
+^CTraceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+KeyboardInterrupt
+>>> c.connect(("192.168.202.154",15000))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'c' is not defined
+>>> c,a = s.accept()
+>>> c
+<socket._socketobject object at 0x7fba8eeb0830>
+>>> a
+('192.168.202.155', 15000)
+>>> data = c.recv(1024)
+>>> data
+'hey, buddy'
+>>> c.send("i'm not your buddy, friend")
+26
+>>> data = c.recv(1024)
+>>> data
+"i'm not your friend, pal"
+>>> c.send("i'm not your pal, guy")
+21
+>>> data = c.recv(1024)
+>>> data
+"i'm not your guy, buddy"
+>>> c.send("deuces!")
+7
+>>> c.close()
+
+--------------------------------------------------------------------------------------------
+
+[student@localhost ~]$ ncat 192.168.202.154 1234
+hey, buddy
+i'm not your buddy, friend
+i
+i'm not your friend, pal
+i'm not your pal, guy
+i'm not your guy, buddy
+bye
+noooooooooo
+^C
+[student@localhost ~]$ python2
+Python 2.7.15 (default, May 16 2018, 17:50:09) 
+[GCC 8.1.1 20180502 (Red Hat 8.1.1-1)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from socket import *
+>>> s=socket(AF_INET,SOCK_STREAM)
+>>> s.bind(("",15000))
+>>> c,a = s.accept()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 206, in accept
+    sock, addr = self._sock.accept()
+socket.error: [Errno 22] Invalid argument
+>>> s.connect(("192.168.202.154",15000)
+... )
+>>> s.connect(("192.168.202.154",15000))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/usr/lib64/python2.7/socket.py", line 228, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 106] Transport endpoint is already connected
+>>> s.send("hey, buddy")
+10
+>>> data = s.recv(1024)
+>>> data
+"i'm not your buddy, friend"
+>>> s.send("i'm not your friend, pal")
+24
+>>> data = s.recv(1024)
+>>> data
+"i'm not your pal, guy"
+>>> s.send("i'm not your guy, buddy")
+23
+>>> data = s.recv(1024)
+>>> data
+'deuces!'
+>>> s.close()
+>>> 

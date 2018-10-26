@@ -1,0 +1,102 @@
+OSI Layer 7 - DNS (Domain Name Server)
+
+FQDN-fully qualified domain name, the complete domain name of the host
+ex: mail3.example.com. (proper standard had the last . after com)
+TLD-top level domain, furthest to right (google.com)
+SLD-second level domain
+subdomain: maps.google.com ("maps" is the subdomain)
+host/resource name-leftmost label of a DNS domain name
+
+DNS Servers
+
+root servers
+tld servers
+domain-level name servers
+resolving name servers
+zone files
+
+DNS resource records
+
+records are a single mapping between a resource and a name
+resource record types - name server (NS), start of authority (SOA), canonical name (CNAME), address (A)
+resource record (RR) types:
+A - IPv4 Address, eDirectory context, comments, and version
+AAAA - IPV6 address
+AFSDB - Subtype and hostname fields
+CNAME - Domain name of aliased host
+HINFO - CPU and OS fields of up to 256 characters each
+ISDN - ISDN address and subaddress fields
+MB - Mailbox address domain name
+MG - Mail group member domain name
+MINFO - Responsible mailbox and error message mailbox
+MR - Mail rename mailbox
+MX - Reference and exchange fields
+
+NS
+	
+
+DNS server domain name
+
+PTR
+	
+
+Domain Name
+
+PX
+	
+
+Preference, Map 822 (domain name), and Map x400 fields (domain name in X.400 syntax)
+
+RP
+	
+
+Responsible person's mailbox and TXT RR domain name
+
+RT
+	
+
+Preference and Intermediate fields
+
+SRV
+	
+
+Service, proto (protocol), priority, weight, port, and target fields
+
+TXT
+	
+
+Text field for up to 256 characters in multiple strings
+
+WKS
+	
+
+Protocol and bit map fields
+
+X25 - PSDN address
+
+SOA Records
+
+A/AAAA Records
+
+A is IPv4 address
+AAAA is IPv6 address
+
+PTR Records
+
+CNAME
+
+MX Records
+
+SRV Records
+
+DNS Resolution
+
+Dig
+
+HTTP (hypertext transfer protocol)
+
+HTTPS (secured HTTP)
+
+SMTP (simple mail transfer protocol, uses port 25)
+
+DHCP (dynamic host configuration protocol)

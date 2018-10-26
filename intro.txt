@@ -1,0 +1,42 @@
+--OSI model--
+
+Layers 1-7: Physical, Data Link, Network, Transport, Session, Presentation, Application
+-Please Do Not Throw Sausage Pizza Away
+
+Layers 7-1: Application, Presentation, Session, Transport, Network, Data Link, Physical
+-All People Seem To Need Data Processing
+
+--Sockets--
+two basic types of comm: TCP vs. UDP
+TCP(streams) - most common, more secure, send/ack back and forth
+UDP(datagrams) - computers send packages to each other, each package is self-contained,
+doesn't verify receipt or order on other end
+netflix is more like datagrams because it doesn't really care if you receive everything or not
+steam is more like streams because you have to get every package in a specific order or the game won't work
+
+--Connections--
+ipv4 vs ipv6
+
+--client/server model--
+
+--major system calls--
+client and server relationship
+3-way handshake
+
+a connection is a unique combo of client IP, client port, server IP, and server port
+
+--socket basics--
+to create a socket (first step):
+	import socket
+	address families
+	socket types
+
+--udp client/server--
+socket() - get socket descriptor
+bind() - specify source port
+sendto()/recvfrom() - data transfer
+close() - close the socket
+
+--tcp client/server--
+tcp is connection oriented and has built-in error checking
+sendall()

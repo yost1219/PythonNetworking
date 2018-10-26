@@ -1,0 +1,8 @@
+OSI Layer 2
+
+Layer 2) Internet: IP Addressing and Routing (network layer)
+
+Data encapsulation is the process of taking data from one protocol and translating it into another
+so it can continue across the network.
+
+Ethernet is family of techs to connect LANs/WANs
